@@ -1,0 +1,32 @@
+//Sessão destinada para criação e desenvolvimento dos scripts.
+//player_move
+
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class MarcoController : MonoBehaviour {
+    Rigidbody2D fisica;
+    public float velocidade = 5;
+    Animator anim;
+
+	// Use this for initialization
+	void Start () {
+        fisica = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
+	}
+	
+	// Update is called once per frame
+	void Update () {
+        float moveX = Input.GetAxis("Horizontal");
+        fisica.velocity = new Vector2(moveX * velocidade, fisica.velocity.y);
+
+        if(moveX == 0)
+        {
+            anim.SetBool("Andando", false);
+        }else
+        {
+            anim.SetBool("Andando", true);
+        }
+	}
+}
